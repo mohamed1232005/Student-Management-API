@@ -1,0 +1,143 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Student Management API"
+  description: "An API to manage student records in a school or university."
+host: "localhost:5000"
+basePath: "/"
+schemes:
+  - "http"
+paths:
+  /students:
+    get:
+      summary: "Get all students"
+      description: "Returns a list of all students."
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "A list of students"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Student"
+      security:
+        - bearerAuth: []
+    post:
+      summary: "Add a new student"
+      description: "Creates a new student record."
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "student"
+          description: "The student to create."
+          required: true
+          schema:
+            $ref: "#/definitions/StudentInput"
+      responses:
+        201:
+          description: "Student created"
+          schema:
+            $ref: "#/definitions/Student"
+      security:
+        - bearerAuth: []
+  /students/{id}:
+    get:
+      summary: "Get student by ID"
+      description: "Returns a student by their ID."
+      produces:
+        - application/json
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "integer"
+          description: "ID of the student to fetch."
+      responses:
+        200:
+          description: "A student"
+          schema:
+            $ref: "#/definitions/Student"
+        404:
+          description: "Student not found"
+      security:
+        - bearerAuth: []
+    put:
+      summary: "Update a student's details"
+      description: "Updates an existing student's information."
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "integer"
+          description: "ID of the student to update."
+        - in: "body"
+          name: "student"
+          description: "Updated student data."
+          required: true
+          schema:
+            $ref: "#/definitions/StudentInput"
+      responses:
+        200:
+          description: "Student updated"
+          schema:
+            $ref: "#/definitions/Student"
+        404:
+          description: "Student not found"
+      security:
+        - bearerAuth: []
+    delete:
+      summary: "Delete a student"
+      description: "Deletes a student record."
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "integer"
+          description: "ID of the student to delete."
+      responses:
+        200:
+          description: "Student deleted"
+        404:
+          description: "Student not found"
+      security:
+        - bearerAuth: []
+
+definitions:
+  Student:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      age:
+        type: "integer"
+      major:
+        type: "string"
+  StudentInput:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      age:
+        type: "integer"
+      major:
+        type: "string"
+    required:
+      - name
+      - age
+      - major
+
+securityDefinitions:
+  bearerAuth:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"

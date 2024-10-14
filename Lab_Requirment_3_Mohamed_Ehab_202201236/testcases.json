@@ -1,0 +1,182 @@
+{
+  "info": {
+    "name": "Student Management API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Students",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer ManchesterIsBlue",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Student by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer ManchesterIsBlue",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/students/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add New Student (Valid Input)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer ManchesterIsBlue",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Emily Davis\", \"age\": 24, \"major\": \"Economics\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add New Student (Invalid Input)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer ManchesterIsBlue",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Sara\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer ManchesterIsBlue",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"John Doe\", \"age\": 22, \"major\": \"Artificial Intelligence\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/students/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Student",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer ManchesterIsBlue",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/students/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students", "2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Unauthorized Request",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer InvalidToken",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["students"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
